@@ -23,8 +23,8 @@ def fileread(filename):
 			return text
 
 def newfilename(oldfilename):
-	dotspot = -(oldfilename[::-1].find(".")+1)
-	return oldfilename[:dotspot] + "Gibberish" + oldfilename[dotspot:]
+	dotspot = -(oldfilename[::-1].find(".")+1) #find the last "." in the string
+	return oldfilename[:dotspot] + "Gibberish" + oldfilename[dotspot:] #put gibberish in the new file name
 
 cont = "y"
 
@@ -47,17 +47,17 @@ while cont == "y":
 		if previousconsonant and letter in vowels:
 			for character in syllable:
 				if character == "*":
-					newtext += letter
+					newtext += letter #replace wildcard
 				else:
 					newtext += character
 			newtext += letter
-			syllable = gib2
+			syllable = gib2 #switch to syllable 2 after first vowel
 			previousconsonant = False
 		else:
 			newtext += letter
 			previousconsonant = True
 			if letter == " ":
-				syllable = gib1
+				syllable = gib1 #reset for each new word
 	
 	outputfilename = newfilename(filename)
 	with open(outputfilename, "w") as outputfile:
