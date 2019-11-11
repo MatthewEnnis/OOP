@@ -5,6 +5,12 @@ def cleanup(text):
 		text = text.replace(i,"").lower()
 	return text.split()
 
+def addword(word, dict):
+	if word in dict:
+			dict[word] += 1
+	else:
+		dict[word] = 1
+
 def makedict(wordlist):
 	dict = {}
 	with open("stopwords.txt") as stopwordsfile:
@@ -12,10 +18,7 @@ def makedict(wordlist):
 	for word in wordlist:
 		if word in stopwords:
 			continue
-		if word in dict:
-			dict[word] += 1
-		else:
-			dict[word] = 1
+		addword(word,dict)
 	return dict
 
 def makepage(words):
